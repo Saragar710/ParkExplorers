@@ -1,7 +1,7 @@
-
 import { useEffect } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
+// import { Loader } from '@/components/shared'
 import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations';
 import { useUserContext } from '@/context/AuthContext';
 import { sidebarLinks } from '@/constants';
@@ -19,7 +19,7 @@ useEffect(() => {
   return (
     <nav className='leftsidebar'>
         <div className='flex flex-col gap-11'>
-        <Link to="/" className="flex gat-3 item-center">
+        <Link to="/" className="flex gap-3 items-center">
             <img 
             // src="/assets/images/logo.svg"
             src="\snapgram_public\public\assets\images\logo.svg"
@@ -50,7 +50,7 @@ useEffect(() => {
                     return (
                         <li key={link.label}
                         className=
-                        {`leftsidebar-link ${isActive && 'bg-primary-500'}`}>
+                        {`leftsidebar-link group ${isActive && 'bg-primary-500'}`}>
                         <NavLink
                         to={link.route}
                         className="flex gap-4 items-center p-4"
@@ -67,6 +67,13 @@ useEffect(() => {
                 })}
             </ul>
         </div>
+
+        <Button variant="ghost"
+        className="shad-button_ghost" onclick={() => signOut ()}>
+            <img src="/assets/icons/logout.svg"
+            alt="logout" />
+            <p className="small-medium lg:base-medium">Logout</p>
+        </Button>
     </nav>
   )
   }
