@@ -1,4 +1,5 @@
-import PostForm from "@/components/ui/forms/PostForm"
+ import PostForm from "@/components/ui/forms/PostForm"
+
 
 const CreatePost = () => {
   return (
@@ -6,7 +7,7 @@ const CreatePost = () => {
       <div className="common-container">
     <div className="max-w-5xl flex-start gap-3 justify-start w-full">
       <img
-      src="/public\snapgram_public\public\assets\icons\add-post.svg"
+      src="public\snapgram_public\public\assets\images\logo.svg"
       width={36}
       height={36}
       alt="add"
