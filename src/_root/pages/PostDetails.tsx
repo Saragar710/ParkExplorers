@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import {
   useGetPostById,
-  useGetUserPosts,
+  // useGetUserPosts,
   useDeletePost,
 } from "@/lib/react-query/queriesAndMutations";
 import { multiFormatDateString } from "@/lib/utils";

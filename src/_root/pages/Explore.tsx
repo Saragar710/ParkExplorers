@@ -4,15 +4,21 @@ import Loader from '@/components/ui/shared/Loader';
 import SearchResults from '@/components/ui/shared/SearchResults';
 import useDebounce from '@/hooks/useDebounce';
 import { useGetPosts, useSearchPosts } from '@/lib/react-query/queriesAndMutations';
-import  { useState } from 'react'
+import  { useState, useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 const Explore = () => {
+  const { ref, inView } = useInView();
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts();              
   
   const [searchValue, setSearchValue] = useState('')
   const debouncedValue = useDebounce(searchValue, 500);
   const { data: searchedPosts, isFetching: isSearchFetching } = 
   useSearchPosts(debouncedValue)
+
+  useEffect(() => {
+    if(inView && !searchValue) fetchNextPage();
+  }, [inView, searchValue])
 
   if(!posts) {
     return (
@@ -70,6 +76,13 @@ const Explore = () => {
           <GridPostList key={`page-${index}`} posts={item.documents} />
         ))}
       </div>
+
+      {hasNextPage && !searchValue && (
+        <div ref={ref} className='mt-10'>
+          <Loader />
+        </div>
+          
+      )}
     </div>
   )
 }
